@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 
 public class General {
     private final int BLOCK = -1;
@@ -8,6 +8,7 @@ public class General {
     final int[] finishPosition;
     int[][] field;
     int count = 0;
+    ArrayList<int[]> arrWay = new ArrayList<>();
 
     public General(int[] size, List<int[]> blocks, int[] startPosition, int[] finishPosition) throws BadPositionException {
         field = new int[size[0]][size[1]];
@@ -57,4 +58,24 @@ public class General {
         if (visitField.size() > 0) wave(visitField);
         return true;
     }
+
+    ArrayList<int[]> findShortWay(int[] position){
+        TreeSet<int[]> mySet = new TreeSet<>((x,y)->{
+            if (field[x[0]][x[1]] > field[y[0]][y[1]]) return 1;
+            else return -1;
+        });
+        for (Step step : Step.getAllSteps()) {
+            if (canGo(position, step)) {
+                int[] newCell = step.doStep(position);
+                mySet.add(newCell);
+            }
+        }
+
+    }
+// Второй вариант компоратора(то же что и лямда но для ссылочного вари)
+//    private int compare(int[] x, int[] y) {
+//        if (field[x[0]][x[1]] > field[y[0]][y[1]]) return -1;
+//        else return 1;
+//
+//    }
 }

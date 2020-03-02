@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 public enum Step {
     Up(new int[]{1, 0}), Down(new int[]{-1, 0}), Left(new int[]{0, -1}), Right(new int[]{0, 1}),

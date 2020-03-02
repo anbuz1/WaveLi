@@ -8,7 +8,7 @@ public class Go {
         try {
 // В конструктор передаем размер поля, список массивов с координатами блоков, массив координат стартовоя ячейки,
 // массив координат финишной ячейкм
-            General general = new General(new int[]{5, 5}, new ArrayList<>(Collections.singleton(block)),
+            General general = new General(new int[]{25, 35}, new ArrayList<>(Collections.singleton(block)),
                     new int[]{0, 0}, new int[]{4, 4});
             general.wave(new ArrayList<int[]>(Collections.singleton(general.startPosition)));
             Arrays.stream(general.field).forEach(y ->
