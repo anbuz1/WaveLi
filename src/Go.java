@@ -8,9 +8,15 @@ public class Go {
         try {
 // В конструктор передаем размер поля, список массивов с координатами блоков, массив координат стартовоя ячейки,
 // массив координат финишной ячейкм
-            General general = new General(new int[]{25, 35}, new ArrayList<>(Collections.singleton(block)),
-                    new int[]{0, 0}, new int[]{4, 4});
+            General general = new General(new int[]{9, 9}, new ArrayList<>(Collections.singleton(block)),
+                    new int[]{0, 0}, new int[]{7, 6});
             general.wave(new ArrayList<int[]>(Collections.singleton(general.startPosition)));
+            general.findShortWay(general.finishPosition);
+            for (int[] ints : general.arrWay) {
+                general.field[ints[0]][ints[1]] = 0;
+            }
+
+
             Arrays.stream(general.field).forEach(y ->
             {
                 Arrays.stream(y).forEach(x -> {
@@ -33,6 +39,7 @@ public class Go {
         } catch (BadPositionException e) {
             e.printStackTrace();
         }
+
 
     }
 }
